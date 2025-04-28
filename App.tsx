@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, Button, KeyboardTypeOptions, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import db from './firebaseConfig.js';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 interface TControlInput {
   label: string,
