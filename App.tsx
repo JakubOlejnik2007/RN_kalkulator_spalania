@@ -6,8 +6,8 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 interface TControlInput {
   label: string,
-  name: string,
-  keyboardType: null | "decimal-pad",
+  name: "distance" | "used_fuel",
+  keyboardType: KeyboardTypeOptions,
   placeholder: string
 }
 
