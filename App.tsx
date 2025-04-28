@@ -13,6 +13,16 @@ interface TControlInput {
 
 export default function App() {
 
+  const [formData, setFormData] = useState<{
+    distance: string,
+    used_fuel: string
+  }>({
+    distance: "100.0",
+    used_fuel: ""
+  })
+
+  const [fuel_per_100km, setFuel_per_100km] = useState<number>(0);
+
   const controls: TControlInput[] = [
     {
       label: "Przejechany dystans:",
@@ -27,6 +37,24 @@ export default function App() {
       placeholder: "Wprowadź paliwo:"
     }
   ]
+
+  const calculateFuelConsumption = (formData: { distance: string, used_fuel: string }) => {
+    const { distance, used_fuel } = formData;
+    if (distance && used_fuel) {
+      setFuel_per_100km(parseFloat(used_fuel) / parseFloat(distance) * 100);
+    }
+  }
+
+  const saveRecord = async () => {
+    const spalanieRef = collection(db, 'spalanie');
+    await addDoc(spalanieRef, {
+      ate: serverTimestamp(),
+      distance: formData.distance,
+      used_fuel: formData.used_fuel,
+      fuel_per_100km: fuel_per_100km,
+    });
+    Alert.alert("Zapisano rekord");
+  }
 
   return (
     <View style={styles.container}>
