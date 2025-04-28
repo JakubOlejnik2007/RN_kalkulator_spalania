@@ -1,5 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+
+interface TControlInput {
+  label: string,
+  name: string,
+  keyboardType: null | "decimal-pad",
+  placeholder: string
+}
 
 export default function App() {
   return (
