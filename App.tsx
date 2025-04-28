@@ -25,16 +25,16 @@ export default function App() {
 
   const controls: TControlInput[] = [
     {
-      label: "Przejechany dystans:",
+      label: "Przejechany dystans (km):",
       name: "distance",
       keyboardType: "decimal-pad",
-      placeholder: "Wprowadź dystans:"
+      placeholder: "Wprowadź dystans"
     },
     {
-      label: "Zużyte paliwo:",
+      label: "Zużyte paliwo (l):",
       name: "used_fuel",
       keyboardType: "decimal-pad",
-      placeholder: "Wprowadź paliwo:"
+      placeholder: "Wprowadź ilość paliwa"
     }
   ]
 
