@@ -59,13 +59,14 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <SafeAreaView>
-        <Text>Kalkulator spalania</Text>
+      <SafeAreaView style={styles.safeArea}>
+        <Text style={styles.title}>Kalkulator spalania paliwa</Text>
         {
           controls.map((item, index) => {
-            return <View key={index}>
-              <Text>{item.label}</Text>
+            return <View key={index} style={styles.inputContainer}>
+              <Text style={styles.label}>{item.label}</Text>
               <TextInput
+                style={styles.input}
                 placeholder={item.placeholder}
                 value={formData[item.name]}
                 keyboardType={item.keyboardType}
@@ -81,12 +82,14 @@ export default function App() {
             </View>
           })
         }
-        <Text>Spalanie na 100km: {fuel_per_100km.toFixed(2)} l</Text>
-        <Button
-          title="Zapisz"
-          onPress={() => {
-            saveRecord();
-          }} />
+        <Text style={styles.result}>Średnie spalanie: {fuel_per_100km.toFixed(2)} l/100km</Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Zapisz wynik"
+            onPress={() => {
+              saveRecord();
+            }} />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -95,8 +98,47 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  safeArea: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginVertical: 20,
+    color: '#333',
+  },
+  inputContainer: {
+    marginBottom: 15,
+    width: '100%',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: '#555',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+  },
+  result: {
+    fontSize: 20,
+    fontWeight: '600',
+    marginVertical: 20,
+    color: '#333',
+  },
+  buttonContainer: {
+    width: '100%',
+    marginTop: 10,
   },
 });
