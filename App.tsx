@@ -58,8 +58,36 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
+      <SafeAreaView>
+        <Text>Kalkulator spalania</Text>
+        {
+          controls.map((item, index) => {
+            return <View key={index}>
+              <Text>{item.label}</Text>
+              <TextInput
+                placeholder={item.placeholder}
+                value={formData[item.name]}
+                keyboardType={item.keyboardType}
+                onChangeText={(text) => {
+                  const updatedFormData = {
+                    ...formData,
+                    [item.name]: text
+                  };
+                  setFormData(updatedFormData);
+                  calculateFuelConsumption(updatedFormData);
+                }}
+              />
+            </View>
+          })
+        }
+        <Text>Spalanie na 100km: {fuel_per_100km.toFixed(2)} l</Text>
+        <Button
+          title="Zapisz"
+          onPress={() => {
+            saveRecord();
+          }} />
+      </SafeAreaView>
     </View>
   );
 }
