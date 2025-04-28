@@ -9,6 +9,22 @@ interface TControlInput {
 }
 
 export default function App() {
+
+  const controls: TControlInput[] = [
+    {
+      label: "Przejechany dystans:",
+      name: "distance",
+      keyboardType: "decimal-pad",
+      placeholder: "Wprowadź dystans:"
+    },
+    {
+      label: "Zużyte paliwo:",
+      name: "used_fuel",
+      keyboardType: "decimal-pad",
+      placeholder: "Wprowadź paliwo:"
+    }
+  ]
+
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
